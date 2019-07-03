@@ -1,0 +1,15 @@
+To merger branch 'branch-2' into 'branch-1' you have to:
+
+1. Checkout to 'branch-1':
+	$ git checkout branch-1
+2. Pull its existing changes (new commits):
+	$ git pull
+3. Merge 'branch-2' into 'branch-1':
+	$ git merge branch-2
+4. Push changes:
+	$ git push
+
+Optional:
+
+4. Remove remote 'branch-2' that was merged into 'branch-1':
+	$ git push --delete origin branch-2
