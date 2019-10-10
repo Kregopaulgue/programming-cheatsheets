@@ -1,0 +1,9 @@
+Stop and remove all containers:
+docker container stop $(docker container ls -aq)
+docker container rm $(docker container ls -aq)
+
+Remove all images:
+sudo docker rmi -f $(sudo docker images)
+
+Remove all volumes:
+sudo docker volume rm $(sudo docker volume ls)

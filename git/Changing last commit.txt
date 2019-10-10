@@ -1,0 +1,22 @@
+Changing only message of the last commit:
+
+$ git commit --amend
+
+Adding modified files:
+
+$ git add .
+$ git commit --amend
+
+Modifying names, for example, 3d one of last commits:
+
+$ git rebase -i HEAD~3
+ 
+Commit message to be changed to this:
+	 edit <third commit name>
+	 pick <second commit name>
+	 pick <first commit name>
+
+Then:
+
+$ git commit --amend
+$ git rebase --continue
