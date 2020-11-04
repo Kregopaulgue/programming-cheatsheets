@@ -1,0 +1,47 @@
+Often you need to run debugger within docker. It many cases it looks like this:
+
+import pdb; pdb.set_trace()
+Or:
+
+import ipdb; ipdb.set_trace()
+The following method works well in combination with docker-compose up:
+
+1. Add the following line to your docker .yml file
+
+stdin_open: true
+tty: true
+Example:
+
+services:
+  backend:
+    stdin_open: true
+    tty: true
+    build: backend/
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/backend
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+2. Attach your running container
+
+Running the docker ps command:
+
+docker ps
+And you would get something like this:
+
+CONTAINER ID        IMAGE               COMMAND
+abcdef012345        frontend            "npm run start"
+ghijkl678910        backend             "python manage.py ..."
+Note the backend <container id>.
+
+Then run the docker attach command:
+
+docker attach ghijkl678910
+Now you can add pdb/ipdb set_trace statements in your code:
+
+def view_index(request):
+    # ...
+    import ipdb; ipdb.set_trace()
+    # ...
